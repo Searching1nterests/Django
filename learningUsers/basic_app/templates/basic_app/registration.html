@@ -1,0 +1,47 @@
+{% extends 'basic_app/base.html' %}
+{% load static %}
+
+{% block body_block %}
+
+<div class="container">
+  <div class="h-100 p-5 text-white bg-dark rounded-3">
+    {% if registered %}
+      <h1>Thank you for registration!</h1>
+    {% else %}
+      <h1>Register Here!</h1>
+      <h3>Fill out the Form:</h3>
+
+      <!-- NICHE enctype nahi likhenge to Image uploading would not work -->
+      <form enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="" class="col-sm-2 col-form-label">Username:</label>
+          {{ user_form.username }}
+        </div>
+        <div class="mb-3">
+          <label for="staticEmail" class="col-sm-2 col-form-label">Email:</label>
+          {{ user_form.email }}
+        </div>
+        <div class="mb-3">
+          <label for="inputPassword" class="col-sm-2 col-form-label">Password:</label>
+          {{ user_form.password }}
+        </div>
+        <div class="mb-3">
+          <label for="" class="col-sm-2 col-form-label">Portfolio_site:</label>
+          {{ profile_form.portfolio_site }}
+        </div>
+        <div class="mb-3">
+          <label for="" class="col-sm-2 col-form-label">Profile Pic:</label>
+          {{ profile_form.profile_pic }}
+        </div>
+
+        <input type="submit" value="Register">
+      </form>
+
+
+    {% endif %}
+  </div>
+
+</div>
+
+{% endblock %}
